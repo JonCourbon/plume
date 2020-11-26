@@ -18,7 +18,7 @@ function fetchJSONFile(path, callback) {
 }
 function loadSearch(indexpath) {
     fetchJSONFile(indexpath, function (data) {
-        var options = { shouldSort: true, location: 0, distance: 100, threshold: 0.7, minMatchCharLength: 2, keys: ["title", "tags", "categories"] };
+        var options = { shouldSort: true, location: 0, distance: 100, threshold: 0.5, minMatchCharLength: 2, keys: ["title", "tags", "categories"] };
         fuse = new Fuse(data, options);
         firstRun=false;
         var text = maininput.value;
