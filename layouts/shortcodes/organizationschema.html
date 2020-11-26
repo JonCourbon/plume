@@ -1,0 +1,59 @@
+<section itemscope  itemtype="http://schema.org/Organization">
+  <h3 itemprop="name">{{ $.Page.Params.organizationname}}</h3>
+  <div itemprop="address" itemtype="http://schema.org/PostalAddress">
+    {{if $.Page.Params.address_description}}
+      <p>{{$.Page.Params.address_description}}</p>
+    {{end}}
+    <span itemprop="streetAddress">{{$.Page.Params.street}}</span><br>
+    <span itemprop="postalCode">{{$.Page.Params.postal}}</span>
+    <span itemprop="addressLocality">{{$.Page.Params.city}}</span><br>
+    
+    {{if and $.Page.Params.lat $.Page.Params.lng}}
+    <div itemprop="geo" itemtype="http://data-vocabulary.org/Geo">
+      <p>
+      {{if $.Page.Params.latlng_description}}
+        {{$.Page.Params.latlng_description}}
+      {{end}}
+      (<span itemprop="latitude">{{$.Page.Params.lat}}</span>; <span itemprop="longitude">{{$.Page.Params.lng}}</span>) <br/>
+      {{if $.Page.Params.map_description}}
+      <a href="https://www.qwant.com/maps/place/latlon:{{$.Page.Params.lat}}:{{$.Page.Params.lng}}#map=15.39/{{$.Page.Params.lat}}/{{$.Page.Params.lng}}" target="_new">{{$.Page.Params.map_description}}</a>
+      {{end}}
+      </p>
+    </div>
+    {{end}}
+    
+  </div>
+
+  {{ .Inner }}
+  
+  </section>
+  <div>
+    <h3 id="contact">Contact</h3>
+    {{if $.Page.Params.contact_description}}
+      <p>{{$.Page.Params.contact_description}}</p>
+    {{end}}
+    <ul class="contactprop">
+      {{if $.Page.Params.tel}}
+      <li class="tel">Tel:<span itemprop="telephone">{{$.Page.Params.tel}}</span></li>
+      {{end}}
+      {{if $.Page.Params.fax}}
+      <li class="fax">Fax:<span itemprop="faxNumber">{{$.Page.Params.fax}}</span></li>
+      {{end}}
+      {{if $.Page.Params.email}}
+      <li class="email">E-mail: <span itemprop="email">{{$.Page.Params.email}}</span></li>
+      {{end}}
+    </ul>
+  </div>
+  {{if $.Page.Params.parentorganizationname}}
+  <section itemprop="parentOrganization"  itemtype="http://schema.org/Organization">
+  <h4 itemprop="name">{{$.Page.Params.parentorganizationname}}</h4>
+  {{if $.Page.Params.parentorganizationurl}}
+    <a href="{{$.Page.Params.parentorganizationurl}}" target="_new">{{i18n "seeWebsite"}}</a>
+  {{end}}
+  {{end}}
+  {{if $.Page.Params.additionnal}}
+    {{$.Page.Params.additionnal}}
+  {{end}}
+  </section>
+
+

@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article itemscope itemtype="http://schema.org/Article" class="container" id="main">
+  <h1 itemprop="name" class="title">{{i18n "tag"}} {{.Title}}</h1>
+  {{i18n "associatedPosts"}}:
+  <ul>
+   <!-- ranges through each of the content files associated with a particular taxonomy term and renders the summary.html content view -->
+    {{ range .Pages.ByDate }}
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{ end }}
+    </ul>
+</article>
+{{ end }}

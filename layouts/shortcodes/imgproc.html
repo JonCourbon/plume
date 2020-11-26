@@ -1,0 +1,47 @@
+{{/* required properties */}}
+{{ $image := resources.GetMatch (.Get "src") }}
+{{ $altText := .Get "alt"}}
+{{ $caption := .Get "caption"}}
+
+{{/* properties from shortcode */}}
+{{ $fill_opt := .Get "fill"}}
+{{ $resize_opt := .Get "resize"}}
+{{ $grayscale_opt := .Get "grayscale"}}
+{{ $gaussian_opt := default "0" (.Get "gaussian")}}
+{{ $force_opt := default "0" (.Get "forceredim")}}
+
+{{/* properties from parent shortcode (for gallery for instance) */}}
+{{ if .Parent}}
+	{{ $fill_opt = .Parent.Get "fill"}}
+	{{ $resize_opt = .Parent.Get "resize"}}
+	{{ $grayscale_opt = .Parent.Get "grayscale"}}
+	{{ $gaussian_opt = default "0" (.Parent.Get "gaussian")}}
+	{{ $force_opt = default "0" (.Parent.Get "forceredim")}}
+{{ end }}
+
+
+{{ if or (ge $image.Width "600") (and (le $image.Width "600") (eq $force_opt "1"))}}
+	{{ if $fill_opt}}
+		{{ $image = $image.Fill $fill_opt }}
+	{{ end }}
+	{{ if ($resize_opt)}}
+		{{ $image = $image.Resize $resize_opt }}
+	{{ end }}
+{{ end }}
+
+
+{{ if $grayscale_opt}}
+	{{ $image = $image | images.Filter (images.Grayscale)}}
+{{ end }}
+
+
+<!-- image -->
+<div class="col">
+<figure>
+	<img src="{{ $image.RelPermalink }}" title="{{ $caption }}" alt="{{ $altText }}" width="{{ $image.Width }}">
+	<figcaption>
+		{{ if isset .Params "caption" }}<h4>{{ .Get "caption" }}</h4>{{ end }}
+	</figcaption>
+</figure>
+</div>
+<!-- fin image -->

@@ -1,0 +1,16 @@
+{{ $description := "" }}
+{{ if .IsPage }}
+  {{ if .Params.Description }}
+    {{ $description = .Params.Description }}
+  {{ else }}
+    {{ $description = .Summary }}
+  {{ end }}
+
+{{ else if .Params.Description }}
+  {{ $description = .Params.Description }}
+
+{{ else }}
+  {{ $description = .Site.Params.Description }}
+
+{{ end }}
+<meta name="description" content="{{ $description }}">

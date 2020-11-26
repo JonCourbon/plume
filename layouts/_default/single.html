@@ -1,0 +1,58 @@
+{{ define "main" }}
+
+{{ $displaytag := default "true" (.Params.displaytag)}}
+
+<article itemscope itemtype="http://schema.org/Article" class="container" id="main">
+	<h1 itemprop="name" class="title">{{.Title}}</h1>
+	{{ with .Params.subtitle }}
+	<span class="subtitle">{{.}}</span>
+	{{ end }}
+	
+	{{ if eq $displaytag "true"}}
+	<p>
+		{{ range (.GetTerms "tags") }}
+		<a href="{{ .Permalink }}"><span class="tag">{{ .LinkTitle }}</span></a>
+		{{ end }}
+	</p>
+	{{ end }}
+	{{ if and (ne .Type "page") (.Date) }}
+	{{ $datestr := default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format }}
+	{{ if eq .Site.LanguageCode "fr"}}
+	{{ $datestr = delimit ( slice .Date.Day " " (index $.Site.Data.mois (printf "%d" .Date.Month)) " " .Date.Year ) " " }}
+	{{ end }}
+	<time>{{ i18n "postedOnDate" }} {{ $datestr }} </time>
+	{{ end }}
+	{{ if .Lastmod}}
+	{{ $datestr := default (i18n "dateFormat") .Site.Params.dateformat | .Lastmod.Format }}
+	{{ if eq .Site.LanguageCode "fr"}}
+	{{ $datestr = delimit ( slice .Lastmod.Day " " (index $.Site.Data.mois (printf "%d" .Lastmod.Month)) " " .Lastmod.Year ) " " }}
+	{{ end }}
+	<time>({{ i18n "lastModified" }} {{ $datestr }})</time>
+	{{ end}}
+	
+	
+	{{if .Params.displaytoc}}
+	<div class="column">
+		{{ .TableOfContents }}
+	</div>
+	{{end}}
+	<section itemprop="content">
+		<!-- "{{.Content}}" pulls from the markdown content of the corresponding _index.md -->
+		{{.Content}}
+	</section>
+	{{ if ne .Type "page" }}
+	<div class="clearfix pager">
+		{{ if .PrevInSection }}
+		<div class="is-left previous">
+			<a href="{{ .PrevInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .PrevInSection.Title }}">&larr; {{ i18n "previousPost" }} ({{.PrevInSection.Title}})</a>
+		</div>
+		{{ end }}
+		{{ if .NextInSection }}
+		<div class="is-right next">
+			<a href="{{ .NextInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .NextInSection.Title }}">{{ i18n "nextPost" }} ({{.NextInSection.Title}}) &rarr;</a>
+		</div>
+		{{ end }}
+	</div>
+	{{ end }}
+</article>
+{{ end }}

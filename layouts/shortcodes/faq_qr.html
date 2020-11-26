@@ -1,0 +1,8 @@
+{{- $q := .Get "q" -}}
+{{- $resp := .Inner -}}
+<details>
+  <summary>{{$q}}</summary>
+  <p>
+    {{$resp}}
+  </p>
+</details>

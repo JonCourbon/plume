@@ -1,0 +1,29 @@
+{{ define "main" }}
+<article itemscope itemtype="http://schema.org/Article" class="container" id="main">
+  <h1 itemprop="name" class="title">{{.Title}}</h1>
+  {{ with .Params.subtitle }}
+  <span class="subtitle">{{.}}</span>
+  {{ end }}
+  <section itemprop="content">
+    <!-- "{{.Content}}" pulls from the markdown content of the corresponding _index.md -->
+    {{.Content}}
+  </section>
+  {{if .Params.displaytags}}
+  <section>
+      <p id="all-tags">
+        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+          <span class="tag"><a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a></span>
+        {{ end }}
+      </p>
+  </section>
+  {{ end }}
+  
+  <div class="contents">
+    {{ range .Paginator.Pages.ByDate.Reverse }}
+    {{ partial "summary.html" . }}
+    {{ end }}
+  </div>
+  
+  {{ partial "pagination.html" . }}
+</article>
+{{ end }}

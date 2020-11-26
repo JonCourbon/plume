@@ -1,0 +1,19 @@
+{{ $datestr := default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format }}
+{{ if eq .Site.LanguageCode "fr"}}
+	{{ $datestr = delimit ( slice .Date.Day " " (index $.Site.Data.mois (printf "%d" .Date.Month)) " " .Date.Year) " " }}
+{{ end }}
+
+<section class="summary article">
+	<header>
+		<h2 class="title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+	</header>
+	{{ if .Date}}
+	<time>{{ i18n "postedOnDate" }} {{ $datestr }}</time>
+	{{ end}}
+	<div>
+		<p>{{ .Summary }}</p>
+		{{ if .Truncated }}
+			<a href="{{ .Permalink }}">{{ i18n "readMore" }}</a>
+		{{ end }}
+	</div>
+</section>

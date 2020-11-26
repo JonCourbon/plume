@@ -1,0 +1,53 @@
+# Content
+- id: dateFormat
+  translation: "January 2, 2006"
+- id: shortdateFormat
+  translation: "Jan 2, 2006 15:04:05"
+- id: postedOnDate
+  translation: "Posted on"
+- id: lastModified
+  translation: "Last modified on"
+- id: translationsLabel
+  translation: "Other languages: "
+- id: translationsSeparator
+  translation: ", "
+- id: readMore
+  translation: "Read More"
+- id: olderPosts
+  translation: "Older Posts"
+- id: newerPosts
+  translation: "Newer Posts"
+- id: previousPost
+  translation: "Previous Post"
+- id: nextPost
+  translation: "Next Post"
+- id: readTime
+  translation: "minutes"
+- id: words
+  translation: "words"
+- id: tag
+  translation: "Tag"
+- id: tags
+  translation: "Tags"
+- id: associatedPosts
+  translation: "Associated posts"
+- id: download
+  translation: "Download"
+- id: switchToDark
+  translation: "Switch to dark mode"
+- id: switchToLight
+  translation: "Switch to light mode"
+- id: seeWebsite
+  translation: "See website"
+- id: search
+  translation: "Search ..."
+  
+# 404 page
+- id: pageNotFound
+  translation: "Whoops, this page doesn't exist. Move along. (404 error)"
+- id: goHome
+  translation: "Return to HomePage"
+  
+# Related posts
+- id: seeAlso
+  translation: "See also"
