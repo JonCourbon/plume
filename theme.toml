@@ -5,11 +5,11 @@ name = "Plume"
 license = "MIT"
 description = "Plume is a theme for Hugo! static websites generator, based on Chota CSS framework and optimised to be eco-friendly"
 homepage = ""
-tags = ["blog", "company", "portfolio", "projects", "minimal", "responsive", "milligram", "eco-friendly", "light", "dark", "mobile", "concatenation", "minification"]
+tags = ["blog", "company", "portfolio", "projects", "minimalist", "responsive", "milligram", "eco-friendly", "light", "dark", "mobile", "concatenation", "minification"]
 features = []
 min_version = "0.41.0"
 
 copyright=""
 [author]
   name = "Jonathan Courbon"
-  homepage = ""
+  homepage = "https://github.com/JonCourbon"
