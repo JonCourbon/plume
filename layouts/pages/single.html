@@ -1,6 +1,7 @@
 {{ define "main" }}
 <article itemscope itemtype="http://schema.org/Article" class="container" id="main">
   <h1 itemprop="name" class="title">{{.Title}}</h1>
+  {{ partial "breadcrumb" .}}
   <div class="row">
     {{if .Params.displaytoc}}
     <div class="column" id="zonemenu">

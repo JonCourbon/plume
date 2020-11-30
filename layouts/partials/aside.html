@@ -1,50 +1,79 @@
 {{ $currentPage := . }}
-{{ $logo := printf "%s/img/logo.jpg" .Site.BaseURL}}
+{{ $logo := resources.GetMatch (.Site.Params.logo) }}
+
 
 <aside>
   <nav class="nav is-center menu_top">
-    <div class="nav-left tabs  hide-xs">
+    <div class="nav-left tabs hide-xs">
       {{ range .Site.Menus.main.ByWeight }}
-      <a {{ $path := printf "%s/" .URL}}
-      {{if eq $currentPage.RelPermalink $path}}
-      class="active"
-      {{end}} href="{{ .URL }}">{{ .Name }}</a>
+      {{ $path := printf "%s/" .URL}}
+      {{ if .HasChildren}}
+        <a class="submenu
+        {{if eq $currentPage.RelPermalink $path}}
+        active
+        {{end}}" id="{{anchorize .URL}}">{{ .Name }}</a>
+      {{ else }}
+        <a {{ $path := printf "%s/" .URL}}
+        {{if eq $currentPage.RelPermalink $path}}
+        class="active"
+        {{end}} href="{{ .URL }}">{{ .Name }}</a>
+      {{ end}}
       {{ end }}
     </div>
     <div class="nav-center">
       <a {{ $path := printf "%s/" .Site.BaseURL}}
       {{if .IsHome}}
       class="active"
-      {{end}} href="{{ .Site.BaseURL }}"><img id="logo" src="{{$logo}}" height="50" alt="{{ .Site.Title }}"></img></a>
-    </div>
-    <div class="nav-right hide-xs" id="fastSearch">
-      <a class="grouped searchBox">
-        <input
-        label="Search"
-        type="search"
-        name="Search field"
-        id="searchField" tabindex="0"
-        placeholder="{{i18n "search"}}"
-        />
-      </a>
-      <a class="theme-switch" href="javascript:void(0)" id="theme-switch" title="{{i18n "switchToLight"}}" onclick="switchMode(this,{{i18n "switchToLight"}},{{i18n "switchToDark"}})">🌙</a>
-    </div>
-  </nav>
-  <div id="searchResultsDiv">
-    <ul id="searchResults">
-    </ul>
-  </div>
-  
-  <nav class="tabs is-center menu_bottom hide-pr">
-    {{ range .Site.Menus.bottom.ByWeight }}
-    <a href="{{ .URL }}" class="{{if or ($currentPage.IsMenuCurrent "bottom" .) ($currentPage.HasMenuCurrent "bottom" .) }} active{{end}}">{{ .Pre }}
-      <br/>{{ .Name }}</a>
+      {{end}} href="{{ .Site.BaseURL }}">
+      {{ if isset .Site.Params "logo" }}
+      <img id="logo" src="{{ $logo.RelPermalink }}" height="50" alt="{{ .Site.Title }}" />
+      {{ else }}
+      {{.Site.Title}}
       {{ end }}
-    </nav>
-  </aside>
-  
-  <script>
-    function checkMode(){if(localStorage.getItem("lightMode")===null){setTimeout(function(){localStorage.setItem("lightMode","false");},100);} else{if(localStorage.getItem("lightMode")=="true"){document.body.classList.remove("dark");switchers=document.getElementsByClassName('theme-switch');for(i=0;i<switchers.length;i++){switchers[i].innerHTML='☀️';switchers[i].title="{{i18n "switchToDark"}}"}}}} checkMode();
-  </script>
-  
-  
+    </a>
+  </div>
+  <div class="nav-right hide-xs" id="fastSearch">
+    <a class="grouped searchBox">
+      <label for="searchField" class="invisible">Search</label>
+      <input
+      type="search"
+      name="Search field"
+      id="searchField" tabindex="0"
+      placeholder="{{i18n "search"}}"
+      />
+    </a>
+    <a class="theme-switch" href="javascript:void(0)" id="theme-switch" title="{{i18n "switchToLight"}}" onclick="switchMode(this,{{i18n "switchToLight"}},{{i18n "switchToDark"}})">🌙</a>
+  </div>
+</nav>
+
+<div class="nav-left tabs hide-xs">
+  {{ range .Site.Menus.main.ByWeight }}
+  {{ if .HasChildren}}
+  {{ $classname := anchorize ( printf "submenu-%s/" .URL ) }}
+  {{ range .Children.ByWeight }}
+    <a class="{{ $classname }} invisible" {{ $path := printf "%s/" .URL}}
+    {{if eq $currentPage.RelPermalink $path}}
+    class="active"
+    {{end}} href="{{ .URL }}">{{ .Name }}</a>
+    {{ end }}
+  {{ end }}
+  {{ end }}
+</div>
+
+<div id="searchResultsDiv">
+  <ul id="searchResults">
+  </ul>
+</div>
+
+<nav class="tabs is-center menu_bottom hide-pr">
+  {{ range .Site.Menus.bottom.ByWeight }}
+  <a href="{{ .URL }}" class="{{if or ($currentPage.IsMenuCurrent "bottom" .) ($currentPage.HasMenuCurrent "bottom" .) }} active{{end}}">{{ .Pre }}
+    <br/>{{ .Name }}</a>
+    {{ end }}
+  </nav>
+</aside>
+
+<script>
+  function checkMode(){if(localStorage.getItem("lightMode")===null){setTimeout(function(){localStorage.setItem("lightMode","false");},100);} else{if(localStorage.getItem("lightMode")=="true"){document.body.classList.remove("dark");switchers=document.getElementsByClassName('theme-switch');for(i=0;i<switchers.length;i++){switchers[i].innerHTML='☀️';switchers[i].title="{{i18n "switchToDark"}}"}}}} checkMode();
+</script>
+

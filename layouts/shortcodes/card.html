@@ -1,3 +1,8 @@
 <div class="card">
+  {{with .Get "title"}}
+  <header>
+    <h4>{{ .Get "title"}}</h4>
+  </header>
+  {{ end }}
 {{ .Inner }}
 </div>

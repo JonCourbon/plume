@@ -57,4 +57,15 @@ window.addEventListener('load', (event) => {
       }
     }
   });
+  
+  var submenus = document.getElementsByClassName('submenu');
+  for(i=0;i<submenus.length;i++){
+    submenus[i].addEventListener('click', (e)=>{
+      var submenus_item = document.getElementsByClassName("submenu-"+e.target.id);
+      for(j=0;j<submenus_item.length;j++){
+        submenus_item[j].classList.remove("invisible");
+      }
+      
+    })
+  }
 });

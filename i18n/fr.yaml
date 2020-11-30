@@ -30,7 +30,7 @@
 - id: tags
   translation: "Etiquettes"
 - id: associatedPosts
-  translation: "Liste des articles associés"
+  translation: "Liste des articles associés à "
 - id: download
   translation: "Télécharger"
 - id: switchToDark

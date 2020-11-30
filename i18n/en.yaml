@@ -30,7 +30,7 @@
 - id: tags
   translation: "Tags"
 - id: associatedPosts
-  translation: "Associated posts"
+  translation: "Associated posts to"
 - id: download
   translation: "Download"
 - id: switchToDark

@@ -4,6 +4,7 @@
   {{ with .Params.subtitle }}
   <span class="subtitle">{{.}}</span>
   {{ end }}
+  {{ partial "breadcrumb" .}}
   <section itemprop="content">
     <!-- "{{.Content}}" pulls from the markdown content of the corresponding _index.md -->
     {{.Content}}

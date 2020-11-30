@@ -8,6 +8,8 @@
 	<span class="subtitle">{{.}}</span>
 	{{ end }}
 	
+	{{ partial "breadcrumb" .}}
+	
 	{{ if eq $displaytag "true"}}
 	<p>
 		{{ range (.GetTerms "tags") }}
@@ -41,7 +43,7 @@
 		{{.Content}}
 	</section>
 	{{ if ne .Type "page" }}
-	<div class="clearfix pager">
+	<div class="grouped">
 		{{ if .PrevInSection }}
 		<div class="is-left previous">
 			<a href="{{ .PrevInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .PrevInSection.Title }}">&larr; {{ i18n "previousPost" }} ({{.PrevInSection.Title}})</a>

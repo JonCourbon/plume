@@ -27,12 +27,9 @@ body.dark {
 }
 
 body > .container {
-  max-width: 720px;
+  max-width: 900px;
 }
 
-img {
-    max-width: none;
-}
 
 .hero {
   display: flex;
@@ -138,6 +135,7 @@ body.dark .menu_bottom {
 }
 
 .menu_bottom > a{
+  color:white;
   border-bottom:none;
   border-right: 1px solid;
 }
@@ -265,4 +263,55 @@ footer .row > div:not(:last-child) {
     border-right:none;
     border-bottom: 1px solid;
   }
+}
+
+.next{
+  text-align: right;
+}
+
+
+.invisible{
+  visibility: collapse;
+}
+
+ul.breadcrumb {
+  padding: 3px 16px;
+  list-style: none;
+  background-color: var(--bg-secondary-color);
+}
+
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 0.8em;
+  color: var(--font-color);
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+body.dark li+li:before {
+  color: black;
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+
+body.dark li a:hover {
+  color: #01447e;
 }
