@@ -315,3 +315,8 @@ ul.breadcrumb li a:hover {
 body.dark li a:hover {
   color: #01447e;
 }
+
+svg{
+  width: 100%;
+height: auto;
+}
