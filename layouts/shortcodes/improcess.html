@@ -37,11 +37,13 @@
 
 <!-- image -->
 <div class="col">
-<figure>
+<figure role="none">
 	<img src="{{ $image.RelPermalink }}" title="{{ $caption }}" alt="{{ $altText }}" width="{{ $image.Width }}">
+	{{ if and (isset .Params "caption") (ne (.Get "caption") "") }}
 	<figcaption>
-		{{ if isset .Params "caption" }}<h4>{{ .Get "caption" }}</h4>{{ end }}
+		<h4>{{ .Get "caption" }}</h4>
 	</figcaption>
+	{{ end }}
 </figure>
 </div>
 <!-- fin image -->

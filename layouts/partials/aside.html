@@ -11,7 +11,7 @@
         <a class="submenu
         {{if eq $currentPage.RelPermalink $path}}
         active
-        {{end}}" id="{{anchorize .URL}}">{{ .Name }}</a>
+        {{end}}" id="{{anchorize .URL}}" role="button">{{ .Name }}</a>
       {{ else }}
         <a {{ $path := printf "%s/" .URL}}
         {{if eq $currentPage.RelPermalink $path}}
@@ -42,7 +42,7 @@
       placeholder="{{i18n "search"}}"
       />
     </a>
-    <a class="theme-switch" href="javascript:void(0)" id="theme-switch" title="{{i18n "switchToLight"}}" onclick="switchMode(this,{{i18n "switchToLight"}},{{i18n "switchToDark"}})">🌙</a>
+    <a class="theme-switch" role="button" href="javascript:void(0)" id="theme-switch" title="{{i18n "switchToLight"}}" onclick="switchMode(this,{{i18n "switchToLight"}},{{i18n "switchToDark"}})">🌙</a>
   </div>
 </nav>
 

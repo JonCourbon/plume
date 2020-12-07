@@ -1,1 +1,1 @@
-<a href="{{ .Get "url" }}" aria-label='Open new tab to: {{ .Get "url" }}' target="_blank">{{ with .Get "title" }}{{.}}{{else}}{{.Get "url"}}{{end}}</a>
+<a href="{{ .Get "url" }}" role="button" aria-label='Open new tab to: {{ .Get "url" }}' target="_blank">{{ with .Get "title" }}{{.}}{{else}}{{.Get "url"}}{{end}}</a>

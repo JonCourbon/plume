@@ -105,6 +105,11 @@ body.dark .card {
   box-shadow: 0 1px 3px var(--color-darkGrey);
 }
 
+body.dark strong{
+  font-weight:normal;
+  opacity: 0.6;
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -319,4 +324,8 @@ body.dark li a:hover {
 svg{
   width: 100%;
 height: auto;
+}
+
+.submenu{
+  cursor: pointer; /* pour homogénéiser */
 }
