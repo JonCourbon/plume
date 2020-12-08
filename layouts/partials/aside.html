@@ -1,13 +1,16 @@
 {{ $currentPage := . }}
 {{ $logo := resources.GetMatch (.Site.Params.logo) }}
 
-
-{{ $p := printf "/%s" .File.Dir}}
-{{ $paths := slice .URL $currentPage.RelPermalink .File.Dir $p }}
-{{ if $currentPage.Parent}}
-  {{ $paths := slice .URL $currentPage.RelPermalink .File.Dir $p $currentPage.Parent.RelPermalink }}
+{{ $d1 := ""}}
+{{ $d2 := ""}}
+{{ with .File }}
+ {{ $d1 = .File.Dir}}
+ {{ $d2 = printf "/%s" .File.Dir}}
 {{ end }}
-
+{{ $paths := slice .URL $currentPage.RelPermalink $d1 $d2 }}
+{{ if $currentPage.Parent}}
+  {{ $paths := slice .URL $currentPage.RelPermalink $d1 $d2 $currentPage.Parent.RelPermalink }}
+{{ end }}
 
 <aside>
   <nav class="nav is-center menu_top">

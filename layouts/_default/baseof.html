@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default "fr" }}"  itemscope itemtype="http://schema.org/WebPage">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- empty favicon -->
 	<link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
 	
 	{{ $title := print .Title " | " .Site.Title }}
-	{{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
 	<title>{{ $title }}</title>
 	
 	{{ partial "meta" . }}
+	{{ template "_internal/opengraph.html" . }}
 		
 	<!--[if IE]>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />

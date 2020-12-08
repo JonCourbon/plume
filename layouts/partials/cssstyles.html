@@ -9,8 +9,9 @@
 {{ $style := slice $chota $basecss $persocss | resources.Concat "bundle.css" }}
 
 {{ if eq hugo.Environment "production" }}
-{{ $style = $style | resources.PostCSS  | minify  }}
+{{ $style = $style | resources.PostCSS  | minify | resources.PostProcess  }}
 {{ end }}
+
 
 <link rel="stylesheet" media="screen" href="{{ $style.RelPermalink }}">
 
@@ -18,7 +19,7 @@
 <!-- == PRINT ==  -->
 {{ $print := resources.Get "css/print.css" }}
 {{ if eq hugo.Environment "production" }}
-{{ $print = $print | resources.PostCSS  | minify}}
+{{ $print = $print | resources.PostCSS  | minify | resources.PostProcess}}
 {{ end }}
 
 <link rel="stylesheet" media="print" href="{{ $print.RelPermalink }}">
