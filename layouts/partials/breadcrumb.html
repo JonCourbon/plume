@@ -11,8 +11,17 @@
 {{ end }}
 
 <ul class="breadcrumb" role="navigation" aria-label="breadcrumbs">
-	{{ range $.Scratch.Get "siteBreadcrumbs" }}
-	<li><a href="{{ .url }}">{{ .name }}</a></li>
+  <!-- Initialise a scratch variable "path" to an empty string -->
+  {{ $.Scratch.Set "path" "" }}
+  <li><a href="/">Home</a></li>
+  <!-- For each non-empty item in the URL path -->
+  {{ range $element := split .RelPermalink "/" }}
+		{{ if ne $element "" }}
+		  <!-- Add the element to the scratch variable -->
+		  {{ $.Scratch.Add "path" "/" }}{{ $.Scratch.Add "path" $element }}
+		  <!-- Populate the href from the scratch variable -->
+		  <li><a href="{{ $.Scratch.Get "path" }}">{{ humanize . }}</a></li>
+	  {{ end }}
 	{{ end }}
 </ul>
 
