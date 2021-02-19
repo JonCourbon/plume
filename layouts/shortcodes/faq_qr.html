@@ -1,6 +1,6 @@
 {{- $q := .Get "q" -}}
 {{- $resp := .Inner -}}
-<details>
+<details {{ if .Get "open" }} open=""{{ end }}>
   <summary>{{$q}}</summary>
   <p>
     {{$resp}}
