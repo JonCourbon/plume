@@ -2,7 +2,7 @@
 {{- $resp := .Inner -}}
 <details {{ if .Get "open" }} open=""{{ end }}>
   <summary>{{$q}}</summary>
-  <p>
+  <div>
     {{$resp}}
-  </p>
+  </div>
 </details>
