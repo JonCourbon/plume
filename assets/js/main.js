@@ -82,6 +82,7 @@ function prepareVideos(){
     // Load the image asynchronously
     var image = new Image();
     image.src = source;
+    image.alt = youtube_div[i].dataset.alt;
     image.addEventListener( "load", function() {
       youtube_div[i].appendChild( image );
     }(i));

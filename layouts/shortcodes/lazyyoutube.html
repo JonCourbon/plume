@@ -1,5 +1,15 @@
+{{ with .Get "id" }}
+{{ else }}
+{{ errorf "The id of the youtube video is not provided (in %q)" .Path }}
+{{ end }}
+
+{{ with .Get "alt" }}
+{{ else }}
+{{ warnf "Accessibility aspect: an alternative text must be given for images (in %q)" .Path }}
+{{ end }}
+
 <div class="row">
-  <div class="col is-center embed-responsive embed-responsive-16by9 youtube" data-embed="{{ .Get "id" }}">
+  <div class="col is-center embed-responsive embed-responsive-16by9 youtube" data-embed="{{ .Get "id" }}" data-alt="{{ .Get "alt" }}">
     <div class="play-button"></div>    
   </div>
 </div>
