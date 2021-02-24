@@ -3,7 +3,7 @@
 
 {{ with .Get "alt" }}
 {{ else }}
-{{ warnf "Accessibility aspect: an alternative text must be given for images (in %q)" .Path }}
+{{ errorf "Accessibility aspect: an alternative text must be given for images (in %q)" .Position  }}
 {{ end }}
 
 {{ if in (.Get "src") "http" }}

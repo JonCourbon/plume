@@ -1,11 +1,11 @@
 {{ with .Get "id" }}
 {{ else }}
-{{ errorf "The id of the youtube video is not provided (in %q)" .Path }}
+{{ errorf "The id of the youtube video is not provided(in %q)" .Position  }}
 {{ end }}
 
 {{ with .Get "alt" }}
 {{ else }}
-{{ warnf "Accessibility aspect: an alternative text must be given for images (in %q)" .Path }}
+{{ errorf "Accessibility aspect: an alternative text must be given for video's image (in %q)" .Position }}
 {{ end }}
 
 <div class="row">
