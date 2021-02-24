@@ -1,6 +1,11 @@
 {{/* get file that matches the filename as specified as src="" in shortcode */}}
 {{ $src := resources.GetMatch (.Get "src") }}
 
+{{ with .Get "alt" }}
+{{ else }}
+{{ warnf "Accessibility aspect: an alternative text must be given for images (in %q)" .Path }}
+{{ end }}
+
 {{ if in (.Get "src") "http" }}
 <img src="{{$src}}" {{ with .Get "alt" }}alt="{{.}}"{{ else }}alt=""{{ end }}>
 {{ else }}
