@@ -2,7 +2,7 @@
 
 {{ if eq hugo.Environment "production" }}
 {{ $homepagejs := $homepagejs | minify | resources.Fingerprint "sha512" }}
-<script src="{{ $homepagejs.RelPermalink }} integrity="{{ $homepagejs.Data.Integrity }}"></script>
+<script src="{{ $homepagejs.RelPermalink }}" integrity="{{ $homepagejs.Data.Integrity }}"></script>
 {{ else}}
 <script src="{{ $homepagejs.RelPermalink }}"></script>
 {{ end }}
